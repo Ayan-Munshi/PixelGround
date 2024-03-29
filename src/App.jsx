@@ -11,8 +11,7 @@ function App() {
       <Nav_bar/>
      <br></br>
       <Posts />
-      <br />
-      <Posts />
+      
       
       
     </div>
