@@ -6,7 +6,7 @@ function App() {
   
 
   return (
-    <div className=" flex flex-col   bg-cover bg-center h-screen bg-black  " sstyle={{ backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDlutqPeXVBG0mIOa-LG8f4OdGznYMdINEStgJp2ql4iqugPX3gCXpCrWHwDqaknjhhmA&usqp=CAU')" }}>
+    <div className=" flex flex-col bg-black  " sstyle={{ backgroundImage: "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDlutqPeXVBG0mIOa-LG8f4OdGznYMdINEStgJp2ql4iqugPX3gCXpCrWHwDqaknjhhmA&usqp=CAU')" }}>
       
       <Nav_bar/>
      <br></br>
