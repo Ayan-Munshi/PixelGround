@@ -38,7 +38,7 @@ function Nav_bar() {
 
   useEffect(() => {
     auth.onAuthStateChanged((authuser) => {   // this is the listener/gatekeeper, this will remember who alrady has an account here who has not
-      if(authuser){
+      if(authuser){       // if we have user in authuser then
         // user has logged in
         setuser(authuser)
        
@@ -52,10 +52,10 @@ function Nav_bar() {
 
   const signup = (e) => {
     e.preventDefault()
-    createUserWithEmailAndPassword(auth,email,password).then((newly_added_useraccount) =>{  // creating new accounnt of users for the first time but this button function
+    createUserWithEmailAndPassword(auth,email,password).then((newly_added_useraccount) =>{  // creating new accounnt of user for the first time here with this button function
 
      console.log(newly_added_useraccount)
-     return updateProfile(newly_added_useraccount.user,{   // .user is the user who has logged in from above and we are updating ptofile/account of that user here (display name will be the username)
+     return updateProfile(newly_added_useraccount.user,{   // (.user) is the user who has logged in (from above code) and we are updating the profile/account of that user here (displayname by firebaseauth will be the username(which user filledout at the account creating time))
       displayName: username
      })
     }).catch((e) => alert(e.message))
