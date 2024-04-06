@@ -22,8 +22,8 @@ function Posts() {
 
   return post_from_db.map((post) => 
     
-    ( <>
-      <div className="bg-transparent flex flex-col max-h-[600px] max-w-[700px] border border-white rounded-3xl ml-7 p-2">
+    ( <div>
+      <div className="bg-transparent flex flex-col max-h-[auto] max-w-[800px] border border-white rounded-3xl ml-7 p-2">
         <div className="flex gap-3">
           <Avatar alt={post.username} src="/static/images/avatar/1.jpg" />
           <h3 className="text-white flex bg-transparent "> {post.username} </h3>
@@ -40,7 +40,7 @@ function Posts() {
         </h3>
       </div>
       <br/>
-      </>
+      </div>
     )
   );
 }

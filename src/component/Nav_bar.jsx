@@ -8,6 +8,7 @@ import { TiMessages } from "react-icons/ti";
 import { CgProfile } from "react-icons/cg";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, updateProfile , signInWithEmailAndPassword } from "firebase/auth";
+import Upload_files from "./Upload_files";
 
 function Nav_bar() {
   const style = {
@@ -25,14 +26,12 @@ function Nav_bar() {
   };
 
   const [open, setOpen] = React.useState(false); //Mui
-  const handleOpen = () => setOpen(true); //Mui
-  const handleClose = () => setOpen(false); //Mui
 
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [email, setemail] = useState("");
   const [user, setuser] = useState(null);
-  const[login,setlogin] = useState(false)
+  const [login,setlogin] = useState(false)
 
   useEffect(() => {
     const unsubcrible = auth.onAuthStateChanged((authuser) => {      // this is the listener/gatekeeper, this will remember who alrady has an account here who has not
@@ -51,19 +50,22 @@ function Nav_bar() {
   }, [user, username]);
 
 
+
   const signuphandler = (e) => {
-
     e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((newly_added_useraccount) => {        // creating new accounnt of user for the first time here with this button function
-        console.log(newly_added_useraccount);
+   createUserWithEmailAndPassword(auth, email, password)
+     .then((newly_added_useraccount) => {        // creating new accounnt of user for the first time here with this button function
 
+        console.log(newly_added_useraccount);
         return updateProfile(newly_added_useraccount.user,{      // (.user) is the user who has logged in (from above code) and we are updating the profile/account of that user here (displayname by firebaseauth will be the username(which user filledout at the account creating time))
           displayName: username,
         })
+        
       }).catch((e) => alert(e.message)).then(() => setusername(""),setemail(""),setpassword("") )
 
   };
+
+
 
   const loginhandler = (e) => {
      e.preventDefault()
@@ -79,8 +81,9 @@ function Nav_bar() {
       />
 
       <div id=" sign up panel"> 
+
         {/** this panel will be shown after clicking the sign up button (imported) */}        
-        <Modal open={open} onClose={handleClose}>
+        <Modal open={open} onClose={() => setOpen(false)}>
           <Box sx={style} className=" rounded-3xl text-white">
             <form action="submit" className="flex flex-col items-center ">
               <lebel className="mr-[90px]">User name :</lebel>
@@ -154,7 +157,7 @@ function Nav_bar() {
       </div>
 
 
-      <div id='search box' className="flex md:w-1/2 lg:w-11/12 xl:w-1/7 2xl:w-1/5 my-2 ml-[80px] lg:mr-0 xl:mr-[50px] rounded-2xl"> {/** the responsive search box */}
+      <div id='search box' className="flex md:w-1/2 lg:w-11/12 xl:w-1/7 2xl:w-1/5 my-2 ml-[50px] lg:mr-0 xl:mr-[30px] rounded-2xl"> {/** the responsive search box */}
         
         <input
           type="text"
@@ -166,7 +169,7 @@ function Nav_bar() {
 
       <div
         id="icons"
-        className="flex flex-wrap bg-transparent  mt-7 mr-[10px] gap-4 w-[600px]"
+        className="flex  bg-transparent  mt-7 mr-[5px] gap-4 w-[500px]"
       >
 
         {user ? (
@@ -175,29 +178,30 @@ function Nav_bar() {
             <h1 className="">
               Hello <strong className="text-blue-400">{user.displayName}</strong>
             </h1>
-            <button
+            <button     // logout button
               onClick={() => auth.signOut()}
               className="border border-white bg-slate-500 h-6 px-1 rounded ml-2 hover:bg-green-400 hover:text-gray-600"
             >
               Log out
             </button>
+
+            <Upload_files username = {user.displayName} />   {/* componen t*/}
           </div>
 
         ) : (
         <>
-          <button onClick={handleOpen} className=" mr-1">       {/** signin button to show the sign in panel(imported from MUI) */}
-            <SiGnuprivacyguard className="bg-transparent ml-2" />
+          <button onClick={() => setOpen(true)} className=" mr-1">       {/** signin button to show the sign in panel(imported from MUI) */}
+            <SiGnuprivacyguard className="bg-transparent ml-2 text-2xl" />
             <h1 className="text-[10px] bg-transparent"> signup </h1>
           </button>
           <button onClick={() => setlogin(true)}>log in</button>
+          
         </>
         )}
 
-        <MdNotificationAdd /> {/** bell icon */}
+        <TiMessages className="ml-2 mr-2 text-3xl" /> {/** message icon */}
 
-        <TiMessages className="ml-2 mr-2" /> {/** message icon */}
-
-        <CgProfile />  {/** profile icon */}
+        <CgProfile className="text-3xl"/>  {/** profile icon */}
 
       </div>
     </div>
