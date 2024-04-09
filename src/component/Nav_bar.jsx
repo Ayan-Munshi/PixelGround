@@ -8,12 +8,12 @@ import { TiMessages } from "react-icons/ti";
 import { CgProfile } from "react-icons/cg";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, updateProfile , signInWithEmailAndPassword } from "firebase/auth";
-import Upload_files from "./Upload_files";
+import Upload_files_button from "./Upload_files_button";
 
 function Nav_bar() {
   const style = {
     // Mui object to use it in sign in panel design
-    height: 400,
+    height: "auto",
     position: "absolute",
     top: "50%",
     left: "50%",
@@ -34,7 +34,7 @@ function Nav_bar() {
   const [login,setlogin] = useState(false)
 
   useEffect(() => {
-    const unsubcrible = auth.onAuthStateChanged((authuser) => {      // this is the listener/gatekeeper, this will remember who alrady has an account here who has not
+    const unsubcrible = auth.onAuthStateChanged((authuser) => {   // this is the listener/gatekeeper, this will remember who alrady has an account here who has not(without this we can create account but cant login later)
       if (authuser) {    // if we have user in authuser then
         // user has logged in
         setuser(authuser);
@@ -52,6 +52,7 @@ function Nav_bar() {
 
 
   const signuphandler = (e) => {
+
     e.preventDefault();
    createUserWithEmailAndPassword(auth, email, password)
      .then((newly_added_useraccount) => {        // creating new accounnt of user for the first time here with this button function
@@ -73,7 +74,7 @@ function Nav_bar() {
   }
 
   return (
-    <div className=" flex text-white bg-gray-700 h-[80px] w-full justify-between p-1 sticky top-0 z-[100]">
+    <div className=" flex text-white bg-gray-600 h-[80px] w-full justify-between p-1 sticky top-0 z-[100] shadow-lg">
       <img
         src="https://img.freepik.com/premium-vector/pixel-logo-with-letter-p-black-background_853558-1718.jpg"
         alt=""
@@ -86,6 +87,10 @@ function Nav_bar() {
         <Modal open={open} onClose={() => setOpen(false)}>
           <Box sx={style} className=" rounded-3xl text-white">
             <form action="submit" className="flex flex-col items-center ">
+
+              <img src="https://img.freepik.com/premium-vector/pixel-logo-with-letter-p-black-background_853558-1718.jpg" alt="" 
+              className="h-[60px] w-[90px] mr-[300px] mt-[-20px]"/>
+
               <lebel className="mr-[90px]">User name :</lebel>
               <input
                 type="text"
@@ -126,6 +131,9 @@ function Nav_bar() {
         <Modal open={login} onClose={() => setlogin(false)}>
           <Box sx={style} className=" rounded-3xl text-white">
             <form action="submit" className="flex flex-col items-center ">
+
+            <img src="https://img.freepik.com/premium-vector/pixel-logo-with-letter-p-black-background_853558-1718.jpg" alt="" 
+              className="h-[60px] w-[90px] mr-[300px] mt-[-20px]"/>
               
               <lebel className="mr-[130px] mt-[10px]">Email :</lebel>
               <input
@@ -185,7 +193,7 @@ function Nav_bar() {
               Log out
             </button>
 
-            <Upload_files username = {user.displayName} />   {/* componen t*/}
+            <Upload_files_button user_name = {user.displayName} />   {/* (sending username value to thr upload file button to use in  db) t*/}
           </div>
 
         ) : (

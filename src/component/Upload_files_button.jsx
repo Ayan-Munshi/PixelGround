@@ -5,12 +5,14 @@ import Modal from "@mui/material/Modal";
 import db,{storage} from '../firebase'
 import {addDoc, collection,serverTimestamp} from 'firebase/firestore'
 import {getDownloadURL, ref,uploadBytes} from 'firebase/storage'
+import { RiUpload2Fill } from "react-icons/ri";
 
-function Upload_files({username}) {
+
+function Upload_files_button({user_name}) {
 
     const style = {
         // Mui object to use it in sign in panel design
-        height: 400,
+        height: "auto",
         position: "absolute",
         top: "50%",
         left: "50%",
@@ -36,7 +38,7 @@ function Upload_files({username}) {
       }
 
       const upload_handler = (e) => {
-        e.preventDefault()
+       // e.preventDefault()
         const imageref = ref(storage,`images/${image.name}`) // this line will search for a folder named images (if already not cretaed then also create) in FB storage(not in database) to save the user uploaded image name
         uploadBytes(imageref,image)                // this will upload the image named as image.nmae in images folder
         
@@ -46,7 +48,7 @@ function Upload_files({username}) {
               addDoc(collection(db,'posts'),{
               caption:caption,
               image_url : url,
-              username : username,
+              username : user_name,
               timestamp : serverTimestamp()
           })
       })
@@ -58,6 +60,9 @@ function Upload_files({username}) {
         <Modal open={upload_panel} onClose={() => setupload_panel(false)}>
           <Box sx={style} className=" rounded-3xl text-white">
             <form action="submit" className="flex flex-col items-center ">
+
+            <img src="https://img.freepik.com/premium-vector/pixel-logo-with-letter-p-black-background_853558-1718.jpg" alt="" 
+              className="h-[60px] w-[90px] mr-[300px] mt-[-20px]"/>
               
               <lebel className="mr-[120px] mt-[10px]">Caption :</lebel>
               <input
@@ -76,9 +81,9 @@ function Upload_files({username}) {
               <progress className="mt-[40px] text-[5px] w-[250px]"></progress>
               <button
                 onClick={upload_handler}
-                className="mt-[30px] border border-gray-400 px-5 rounded-lg  hover:bg-blue-500"
+                className=" flex gap-1 mt-[30px] border border-gray-400 px-5 rounded-lg  hover:bg-blue-500"
               >
-                Upload
+                Upload <RiUpload2Fill className='gap-1 mt-[4.5px]' />
               </button>
             </form>
           </Box>
@@ -92,4 +97,4 @@ function Upload_files({username}) {
   )
 }
 
-export default Upload_files
+export default Upload_files_button
