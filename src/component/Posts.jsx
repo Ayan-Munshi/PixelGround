@@ -21,7 +21,9 @@ function Posts() {
     return () => {
       unsubcribe();
     };
-  }, [post_from_db]);
+  }, []);  // didn't give any dependencies because for this the useEffect will run read operations infinitely to FB and for this action will end the daily read operation quota and the app will break down
+
+  console.log('images from db',post_from_db); // checking if the useEffcet performing read operations infinitely
 
 
   return post_from_db.map(({post,id}) => 
@@ -42,6 +44,7 @@ function Posts() {
         <h3 className="text-gray-600 flex bg-transparent ">
           caption :<strong className=""> {post.caption}</strong>
         </h3>
+        <br></br>
         <Comments posts_id ={id}/>
       </div>
       <br/>
