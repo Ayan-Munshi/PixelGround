@@ -4,14 +4,14 @@ import { getAuth,GoogleAuthProvider } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDNyz-lv4me7-OAD5zxN33Q_6NmurN6v9M",
-    authDomain: "pixelground-5b1f5.firebaseapp.com",
-    projectId: "pixelground-5b1f5",
-    storageBucket: "pixelground-5b1f5.appspot.com",
-    messagingSenderId: "482902275313",
-    appId: "1:482902275313:web:75de322db9bf64c6ef6550",
-    measurementId: "G-SH3V5TGV4F"
-  };
+  apiKey: "AIzaSyDtrizQg7LDfCCsg4hInTbczFzorfeamn4",
+  authDomain: "pixelground-fc731.firebaseapp.com",
+  projectId: "pixelground-fc731",
+  storageBucket: "pixelground-fc731.appspot.com",
+  messagingSenderId: "724701363416",
+  appId: "1:724701363416:web:3caf44623371e2f7c5abad",
+  measurementId: "G-2FG13YV78D"
+};
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app)

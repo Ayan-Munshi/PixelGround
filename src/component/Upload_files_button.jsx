@@ -17,7 +17,7 @@ function Upload_files_button({user_name}) {
         top: "50%",
         left: "50%",
         transform: "translate(-50%, -50%)",
-        width: 400,
+        width: "auto",
         bgcolor: "black",
         border: "2px solid white",
         boxShadow: 24,
@@ -38,13 +38,13 @@ function Upload_files_button({user_name}) {
       }
 
       const upload_handler = (e) => {
-       // e.preventDefault()
+       e.preventDefault()
         const imageref = ref(storage,`images/${image.name}`) // this line will search for a folder named images (if already not cretaed then also create) in FB storage(not in database) to save the user uploaded image name
-        uploadBytes(imageref,image)                // this will upload the image named as image.nmae in images folder
+        uploadBytes(imageref,image)                           // this will upload the image named as image.nmae in images folder
         
-        .then((reference) => getDownloadURL(reference.ref))  // this will download the url of the previously uploaded image from storage
+        .then((reference) => getDownloadURL(reference.ref))    // this will download the url of the previously uploaded image from storage
 
-        .then((url) => {           // this will upload the url in the database of FB
+        .then((url) => {                                         // this will upload the url in the database of FB
               addDoc(collection(db,'posts'),{
               caption:caption,
               image_url : url,
@@ -78,7 +78,7 @@ function Upload_files_button({user_name}) {
                 className="rounded p-1 bg-transparent ml-[110px]"              
                 onChange={image_handler}
               />
-              <progress className="mt-[40px] text-[5px] w-[250px]"></progress>
+              <progress value={progressbar} className="mt-[40px] text-[5px] w-[250px]"></progress>
               <button
                 onClick={upload_handler}
                 className=" flex gap-1 mt-[30px] border border-gray-400 px-5 rounded-lg  hover:bg-blue-500"

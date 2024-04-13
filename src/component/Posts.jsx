@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import db from "../firebase";
 import { collection, onSnapshot } from "firebase/firestore";
+import Comments from './Comments'
 
 function Posts() {
   const [post_from_db, set_post_from_db] = useState([]);
@@ -22,6 +23,7 @@ function Posts() {
     };
   }, [post_from_db]);
 
+
   return post_from_db.map(({post,id}) => 
     
     ( <div key={id}>
@@ -40,6 +42,7 @@ function Posts() {
         <h3 className="text-gray-600 flex bg-transparent ">
           caption :<strong className=""> {post.caption}</strong>
         </h3>
+        <Comments posts_id ={id}/>
       </div>
       <br/>
       </div>
