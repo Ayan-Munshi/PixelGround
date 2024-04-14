@@ -27,7 +27,7 @@ function Upload_files_button({user_name}) {
       const[upload_panel,setupload_panel] = React.useState(false)
       const [caption,setcaption] = useState("")
       const [image,setimage] = useState("")
-      const [progressbar,setprogressbar] = useState(null)
+      // const [progressbar,setprogressbar] = useState(null)
 
 
       const image_handler = (e) => {
@@ -78,7 +78,7 @@ function Upload_files_button({user_name}) {
                 className="rounded p-1 bg-transparent ml-[110px]"              
                 onChange={image_handler}
               />
-              <progress value={progressbar} className="mt-[40px] text-[5px] w-[250px]"></progress>
+              {/* <progress value={progressbar} className="mt-[40px] text-[5px] w-[250px]"></progress> */}
               <button
                 onClick={upload_handler}
                 className=" flex gap-1 mt-[30px] border border-gray-400 px-5 rounded-lg  hover:bg-blue-500"

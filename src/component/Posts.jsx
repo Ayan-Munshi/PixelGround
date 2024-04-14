@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import db from "../firebase";
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import Comments from './Comments'
 
 function Posts() {
@@ -9,7 +9,8 @@ function Posts() {
 
   useEffect(() => {                            
     const postspath = collection(db, "posts");        // use try , catch
-    const unsubcribe = onSnapshot(postspath, (snapshot) => {
+    const ordered_posts = query(postspath, orderBy('timestamp','desc'))
+    const unsubcribe = onSnapshot(ordered_posts, (snapshot) => {
       set_post_from_db(
         snapshot.docs.map((doc) => {
          return {
@@ -45,7 +46,7 @@ function Posts() {
           caption :<strong className=""> {post.caption}</strong>
         </h3>
         <br></br>
-        <Comments posts_id ={id}/>
+        <Comments posts_id ={id} posts_username = {post.username}/>
       </div>
       <br/>
       </div>
