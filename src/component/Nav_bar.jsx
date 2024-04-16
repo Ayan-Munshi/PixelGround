@@ -54,7 +54,7 @@ function Nav_bar() {
   const signuphandler = (e) => {
 
     e.preventDefault();
-   createUserWithEmailAndPassword(auth, email, password)
+    createUserWithEmailAndPassword(auth, email, password)
      .then((newly_added_useraccount) => {        // creating new accounnt of user for the first time here with this button function
 
         console.log(newly_added_useraccount);
@@ -70,7 +70,8 @@ function Nav_bar() {
 
   const loginhandler = (e) => {
      e.preventDefault()
-     signInWithEmailAndPassword(auth,email,password).then(() => setemail("") ,setpassword("")).catch((error) => alert(error.message)  )
+     signInWithEmailAndPassword(auth,email,password)
+     .then(() => setemail("") ,setpassword("")).catch((error) => alert(error.message)  )
   }
 
   return (

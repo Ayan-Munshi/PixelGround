@@ -46,7 +46,7 @@ function Posts() {
           caption :<strong className=""> {post.caption}</strong>
         </h3>
         <br></br>
-        <Comments posts_id ={id} posts_username = {post.username}/>
+        <Comments posts_id ={id}/>
       </div>
       <br/>
       </div>
