@@ -1,5 +1,21 @@
 # React + Vite
 
+PixelGround
+PixelGround is a photo-sharing application built using React, Tailwind CSS, and Firebase. It allows users to upload photos along with captions and comment on other users' posts after authenticating with their email and password.
+
+Features:
+
+.User Authentication: Users can sign up, log in, and log out securely with their email and password.
+.Photo Upload: Users can upload photos along with captions to share their moments with others.
+.Commenting: Users can engage with other users' posts by leaving comments.
+.Seamless Routing: The application features seamless routing for a smooth user experience.
+
+Technologies Used:
+.React
+.Tailwind CSS
+.Firebase (Authentication, Realtime Database, photos,caption,username,comments)
+React Router
+
 
 <img width="1470" alt="Screenshot 2024-04-17 at 2 57 02 AM" src="https://github.com/Ayan-Munshi/PixelGround/assets/149728008/a8d11c62-166e-4ad2-a451-3b3f0b01a05b">
 
